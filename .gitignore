@@ -33,11 +33,11 @@ temp/
 tmp/
 
 # Model Files (uncomment if models are too large for git)
-models/saved_models/*.pkl
+#models/saved_models/*.pkl
 
 # Data Files (uncomment if data files are too large for git)
-data/raw/*.csv
-data/processed/*.csv
+#data/raw/*.csv
+#data/processed/*.csv
 
 # Backup Files
 *.bak

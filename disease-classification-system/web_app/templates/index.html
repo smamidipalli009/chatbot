@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinical Symptom Assessment System - AI Medical Diagnostic Tool</title>
+    <title>SymptomAI - Smart Health Analysis Tool</title>
     <style>
         * {
             margin: 0;
@@ -93,14 +93,27 @@
         }
 
         [data-theme="dark"] .bot-avatar {
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-            border: 2px solid #1e293b;
+            background: #1e293b;
+            color: #60a5fa;
+            border: 3px solid #60a5fa;
         }
 
         [data-theme="dark"] .bot-avatar::before {
             background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
         }
 
+        [data-theme="dark"] .message.bot .message-avatar {
+            background: #1e293b;
+            color: #60a5fa;
+            border: 2px solid #60a5fa;
+        }
+
+        /* Dark mode typing indicator */
+        [data-theme="dark"] .typing-indicator .message-avatar {
+            background: #1e293b !important;
+            color: #60a5fa !important;
+            border: 2px solid #60a5fa !important;
+        }
         [data-theme="dark"] .chat-container::before {
             background: linear-gradient(90deg, #3b82f6 0%, #22c55e 50%, #3b82f6 100%);
         }
@@ -659,16 +672,16 @@
         .bot-avatar {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--primary-500) 100%);
+            background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
-            color: white;
+            color: var(--medical-blue);
             box-shadow: var(--shadow-medical);
             position: relative;
-            border: 2px solid white;
+            border: 3px solid var(--medical-blue);
         }
 
         .bot-avatar::before {
@@ -754,8 +767,9 @@
         }
 
         .message.bot .message-avatar {
-            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
-            color: white;
+            background: white;
+            color: var(--medical-blue);
+            border: 2px solid var(--medical-blue);
         }
 
         .message.user .message-avatar {
@@ -2234,10 +2248,10 @@
         <header class="chat-header">
             <div class="bot-avatar">⚕️</div>
             <div class="bot-info">
-                <div class="bot-name">Clinical Symptom Assessment System</div>
+                <div class="bot-name">SymptomAI</div>
                 <div class="bot-status">
                     <span class="status-dot"></span>
-                    <span>Advanced Diagnostic Decision Support</span>
+                    <span>Smart Health Analysis Tool</span>
                 </div>
             </div>
         </header>
@@ -2263,7 +2277,7 @@
         <!-- Typing Indicator (Hidden by default) -->
         <div class="typing-indicator" id="typing" style="display: none;">
             <div class="message-wrapper">
-                <div class="message-avatar" style="background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%); color: white;">⚕️</div>
+                <div class="message-avatar" style="background: white; color: var(--medical-blue); border: 2px solid var(--medical-blue);">⚕️</div>
                 <div class="typing-bubble">
                     <div class="typing-dots">
                         <div class="typing-dot"></div>
@@ -2344,7 +2358,7 @@
         function toggleTheme() {
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             document.body.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('theme', currentTheme);
+            //localStorage.setItem('theme', currentTheme);
             updateThemeToggle();
         }
 
