@@ -31,10 +31,22 @@ jobs:
 
     - name: Verify Model Artifact
       id: check_model_file
-      uses: andstor/file-existence-action@v1
-      with:
-        files: models/saved_models/disease_classification_model.pkl
+      run: |
+        MODEL_PATH="models/saved_models/disease_classification_model.pkl"
+        if [ -f "$MODEL_PATH" ]; then
+          FILE_SIZE=$(stat -c%s "$MODEL_PATH")
+          echo "file_exists=true" >> $GITHUB_OUTPUT
+          echo "Model file exists at: $MODEL_PATH"
+          echo "Model file size: $FILE_SIZE bytes"
+        else
+          echo "file_exists=false" >> $GITHUB_OUTPUT
+          echo "Model file NOT found at: $MODEL_PATH"
+          exit 1
+        fi
 
     - name: Confirm Model Build Success
-      if: steps.check_model_file.outputs.files_exists == 'true'
+      if: steps.check_model_file.outputs.file_exists == 'true'
       run: echo "Model file exists! Build is successful."
+
+
+      
