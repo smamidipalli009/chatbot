@@ -104,11 +104,6 @@ jobs:
         cd dist/mlchatbot-app
         bash set.sh
 
-    - name: start gunicorn
-      run: |
-        cd dist/mlchatbot-app
-        nohup deploy_env/bin/gunicorn --bind 0.0.0.0:9090 --workers 2 run_chatbot:app > gunicorn.log 2>&1 &
-
     - name: start nginx
       run: |
         cd dist/mlchatbot-app
