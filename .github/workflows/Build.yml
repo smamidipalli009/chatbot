@@ -62,7 +62,7 @@ jobs:
             models/saved_models/disease_classification_model.pkl
             requirements_deploy.txt
             web_app/config/gunicorn_config.py
-            config/nginx_config
+            config/nginx.conf
             web_app/config/start.sh
             web_app/config/stop.sh
             set.sh
