@@ -65,7 +65,7 @@ jobs:
             config/nginx.conf
             web_app/start.sh
             web_app/stop.sh
-            ngnix_setup.sh
+            nginx_setup.sh
             set.sh
           )
           echo "[INFO] Validating required files..."
@@ -87,7 +87,7 @@ jobs:
           cp requirements_deploy.txt dist/mlchatbot-app/
           cp -rf config dist/mlchatbot-app/
           cp set.sh dist/mlchatbot-app/
-          cp ngnix_setup.sh dist/mlchatbot-app/
+          cp nginx_setup.sh dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
 
     - name: paths
