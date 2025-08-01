@@ -93,5 +93,5 @@ jobs:
       run: |
         ls -lthra 
         pwd
-        cd dist
+        cd dist/mlchatbot-app
         bash set.sh
