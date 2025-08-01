@@ -1,5 +1,5 @@
-# Basic Gunicorn configuration for lab environment
-# This config is in deploy/ folder, separate from web_app/
+# Gunicorn configuration for your directory structure
+# This file should be named gunicorn_config.py (not gunicorn.conf.py)
 
 # Server socket
 bind = "0.0.0.0:9090"
@@ -12,7 +12,7 @@ worker_connections = 1000
 timeout = 30
 keepalive = 2
 
-# Logging
+# Logging (paths relative to where gunicorn runs - from web_app/ directory)
 loglevel = "info"
 accesslog = "../logs/gunicorn_access.log"
 errorlog = "../logs/gunicorn_error.log"
