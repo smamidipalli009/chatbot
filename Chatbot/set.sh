@@ -29,4 +29,6 @@ bash start.sh
 cd ..
 pwd 
 ls -lthra 
+chmod +x nginx_setup.sh
+ls -lthra nginx_setup.sh
 bash nginx_setup.sh
