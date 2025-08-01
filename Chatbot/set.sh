@@ -25,7 +25,7 @@ chmod +x web_app/start.sh web_app/stop.sh
 # Start the application
 cd web_app
 
-setsid nohup ../deploy_env/bin/gunicorn --bind 0.0.0.0:9090 --workers 2 app:app > ../logs/gunicorn.log 2>&1 &
+setsid nohup ../deploy_env/bin/gunicorn --bind 0.0.0.0:9090 --workers 2 app:app > gunicorn.log 2>&1 &
 echo $! > gunicorn.pid
 
 cd ..
