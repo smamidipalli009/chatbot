@@ -28,9 +28,4 @@ cd web_app
 setsid nohup ../deploy_env/bin/gunicorn --bind 0.0.0.0:9090 --workers 2 app:app > gunicorn.log 2>&1 &
 echo $! > gunicorn.pid
 
-cd ..
-pwd 
-ls -lthra 
-chmod +x nginx_setup.sh
-ls -lthra nginx_setup.sh
 bash nginx_setup.sh
