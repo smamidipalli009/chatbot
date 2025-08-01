@@ -1,4 +1,4 @@
 Flask>=3.0.0
 numpy>=1.26.0
-scikit-learn>=1.7.0    # Required to load/use pickled ML models
+scikit-learn==1.7.0    # Required to load/use pickled ML models
 gunicorn>=22.0.0
