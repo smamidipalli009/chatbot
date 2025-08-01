@@ -76,8 +76,9 @@ jobs:
     - name: Zip minimal app contents
       run: |
           mkdir -p dist/mlchatbot-app
+          mkdir -p dist/mlchatbot-app/models/saved_models
           cp -r web_app dist/mlchatbot-app/
-          cp -r models dist/mlchatbot-app/
+          cp models/saved_models/disease_classification_model.pkl dist/mlchatbot-app/models/saved_models/
           cp requirements_deploy.txt dist/mlchatbot-app/
           cp set.sh dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
