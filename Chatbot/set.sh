@@ -20,7 +20,7 @@ pip3 install -r requirements_deploy.txt  --break-system-packages
 
 #deactivate
 # Make scripts executable
-chmod +x web_app/start.sh web_app/stop.sh
+#chmod +x web_app/start.sh web_app/stop.sh
 
 # Start the application
 cd web_app
@@ -28,4 +28,5 @@ cd web_app
 setsid nohup ../deploy_env/bin/gunicorn --bind 0.0.0.0:9090 --workers 2 app:app > gunicorn.log 2>&1 &
 echo $! > gunicorn.pid
 
-bash nginx_setup.sh
+#chmod +x nginx_setup.sh
+#bash nginx_setup.sh
