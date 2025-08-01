@@ -24,15 +24,19 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
-
-    - name: test
-      run: |
-        ls -lthra 
-        pwd
-
     - name: Install Required Packages
       run: |
         python -m venv build_env
         source build_env/bin/activate
         pip install -r requirements_build.txt --break-system-packages
         python3 src/run_pipelines.py
+
+    - name: Validate Model File Existence
+      id: check_model_file
+      uses: andstor/file-existence-action@v1
+      with:
+        files: models/saved_models/disease_classification_model.pkl
+
+    - name: Build Successful (if model exists)
+      if: steps.check_model_file.outputs.files_exists == 'true'
+      run: echo "Model file exists! Build is successful."
