@@ -65,8 +65,8 @@ jobs:
             config/nginx.conf
             web_app/start.sh
             web_app/stop.sh
+            ngnix_setup.sh
             set.sh
-            nginx_setup.sh
           )
           echo "[INFO] Validating required files..."
           for FILE in "${REQUIRED_FILES[@]}"; do
