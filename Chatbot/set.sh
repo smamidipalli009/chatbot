@@ -10,15 +10,15 @@ sudo apt-get install -y nginx
 
 # Create virtual environment
 python3 -m venv deploy_env
-source deploy_env/Scripts/activate
+source deploy_env/bin/activate
 
 # Upgrade pip tools
 pip3 install --upgrade pip setuptools wheel  --break-system-packages
 
 # Install requirements (fixed filename)
-pip3 install -r deploy/requirements_deploy.txt  --break-system-packages
+pip3 install -r requirements_deploy.txt  --break-system-packages
 
-deactivate
+#deactivate
 # Make scripts executable
 chmod +x deploy/start.sh deploy/stop.sh
 
