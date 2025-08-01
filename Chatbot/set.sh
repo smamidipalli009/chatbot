@@ -10,7 +10,7 @@ sudo apt-get install -y nginx
 
 # Create virtual environment
 python3 -m venv deploy_env
-source deploy_env/bin/activate
+source deploy_env/Scripts/activate
 
 # Upgrade pip tools
 pip3 install --upgrade pip setuptools wheel
