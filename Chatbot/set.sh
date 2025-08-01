@@ -18,8 +18,9 @@ pip3 install --upgrade pip setuptools wheel
 # Install requirements (fixed filename)
 pip3 install -r deploy/requirements_deploy.txt
 
+deactivate
 # Make scripts executable
-chmod +x ../deploy/start.sh ../deploy/stop.sh
+chmod +x deploy/start.sh deploy/stop.sh
 
 # Start the application
-bash ../deploy/start.sh
+bash deploy/start.sh
