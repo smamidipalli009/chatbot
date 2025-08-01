@@ -51,7 +51,7 @@ Chatbot/environments/*
 
 Chatbot/data/*
 
-Chatbot/src/
+#Chatbot/src/
 
 Chatbot/log/
 
