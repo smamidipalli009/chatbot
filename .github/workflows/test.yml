@@ -1,0 +1,59 @@
+name: Test File-Based Hostname Transfer
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-hostname:
+    name: Generate Hostname and Save to File
+    runs-on: self-hosted
+
+    outputs:
+      hostname_source: ${{ steps.save-hostname.outputs.source }}
+
+    steps:
+      - name: Generate Dummy Hostname
+        id: generate
+        run: |
+          # Replace with a real hostname or IP for a more realistic test
+          HOSTNAME="example.com"
+          echo "Generated hostname: $HOSTNAME"
+
+      - name: Save Hostname to File
+        id: save-hostname
+        run: |
+          HOSTNAME="example.com" #added here also because, cannot directly call generate id
+
+          echo "$HOSTNAME" > /tmp/hostname.txt
+          echo "Hostname saved to /tmp/hostname.txt"
+          echo "::set-output name=source::/tmp/hostname.txt"
+
+  use-hostname:
+    name: Use Hostname from File
+    runs-on: self-hosted
+    needs: generate-hostname
+
+    steps:
+      - name: Read Hostname from File
+        id: read-hostname
+        run: |
+          HOSTNAME_FILE="${{ needs.generate-hostname.outputs.hostname_source }}"
+          if [ -f "$HOSTNAME_FILE" ]; then
+            HOSTNAME=$(cat "$HOSTNAME_FILE")
+            echo "Hostname read from $HOSTNAME_FILE: $HOSTNAME"
+            echo "HOSTNAME=$HOSTNAME" >> $GITHUB_ENV
+          else
+            echo "Error: Hostname file not found: $HOSTNAME_FILE"
+            exit 1
+          fi
+
+      - name: Print Hostname
+        run: |
+          echo "Using hostname: ${{ env.HOSTNAME }}"
+
+      - name: Simulate SCP (Dummy)
+        run: |
+          echo "Simulating SCP to ${{ env.HOSTNAME }}"
+
+      - name: Clean Up (Delete File)
+        run: rm -f /tmp/hostname.txt

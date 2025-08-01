@@ -1,0 +1,83 @@
+{
+  "common_cold": {
+    "condition_name": "Common Cold",
+    "immediate_care": [
+      "Rest is your body's best medicine right now - try to get extra sleep",
+      "Stay well hydrated with water, herbal teas, and warm broths",
+      "Use throat lozenges or gargle with warm salt water for sore throat relief",
+      "Consider zinc supplements within the first 24 hours (consult pharmacist for dosing)",
+      "Use a humidifier or breathe steam from a hot shower to ease congestion"
+    ],
+    "symptom_relief": [
+      "For stuffy nose: saline nasal rinses can provide gentle relief",
+      "Honey can soothe coughs and sore throats (not for children under 1 year)",
+      "Over-the-counter pain relievers like acetaminophen or ibuprofen for aches",
+      "Avoid smoking and secondhand smoke to prevent irritation"
+    ],
+    "when_to_seek_help": "See a healthcare provider if symptoms worsen after a week, you develop a high fever, or experience severe headache or sinus pain"
+  },
+  "influenza": {
+    "condition_name": "Influenza",
+    "immediate_care": [
+      "Bed rest is crucial - your body needs energy to fight the virus",
+      "Drink plenty of fluids to prevent dehydration and help thin mucus",
+      "Antiviral medications may help if started within 48 hours - contact your doctor",
+      "Take your temperature regularly and monitor symptoms closely"
+    ],
+    "symptom_relief": [
+      "Acetaminophen or ibuprofen can help reduce fever and body aches",
+      "Warm compresses can soothe muscle pain and headaches",
+      "Throat lozenges or warm salt water gargles for throat discomfort",
+      "Light, easily digestible foods when you feel up to eating"
+    ],
+    "when_to_seek_help": "Seek immediate medical care for difficulty breathing, persistent high fever, severe headache, or signs of dehydration"
+  },
+  "gastroenteritis": {
+    "condition_name": "Gastroenteritis",
+    "immediate_care": [
+      "Hydration is your top priority - sip fluids slowly and frequently",
+      "Start with clear fluids: water, clear broths, electrolyte solutions",
+      "Rest your stomach by avoiding solid foods initially",
+      "Gradually reintroduce foods following the BRAT diet (bananas, rice, applesauce, toast)"
+    ],
+    "symptom_relief": [
+      "Avoid dairy products, fatty foods, spicy foods, and high-fiber foods",
+      "Stay away from alcohol, caffeine, and sugary drinks",
+      "Small, frequent meals are better than large ones",
+      "Probiotics may help restore healthy gut bacteria"
+    ],
+    "when_to_seek_help": "Seek medical care if you can't keep fluids down, show signs of severe dehydration, or have blood in vomit/stool"
+  },
+  "migraine": {
+    "condition_name": "Migraine",
+    "immediate_care": [
+      "Find a dark, quiet room and try to rest or sleep",
+      "Apply a cold compress to your forehead or the back of your neck",
+      "Gentle neck and shoulder massage may provide some relief",
+      "Take prescribed migraine medication as early as possible in the attack"
+    ],
+    "symptom_relief": [
+      "Dim the lights and avoid bright screens",
+      "Minimize noise and strong odors",
+      "Try relaxation techniques like deep breathing or meditation",
+      "Stay hydrated, but avoid large amounts of liquid at once"
+    ],
+    "when_to_seek_help": "Contact your doctor if migraines become more frequent/severe, or if you experience sudden severe headache unlike your usual pattern"
+  },
+  "anxiety_disorder": {
+    "condition_name": "Anxiety Disorder",
+    "immediate_care": [
+      "Practice deep breathing exercises - inhale for 4, hold for 4, exhale for 6",
+      "Use grounding techniques: name 5 things you can see, 4 you can touch, 3 you can hear",
+      "Try progressive muscle relaxation starting from your toes up to your head",
+      "Remind yourself that anxiety attacks are temporary and will pass"
+    ],
+    "symptom_relief": [
+      "Reduce or eliminate caffeine, as it can worsen anxiety symptoms",
+      "Regular exercise can significantly reduce anxiety levels",
+      "Maintain consistent sleep patterns and aim for 7-9 hours nightly",
+      "Consider meditation, yoga, or mindfulness practices"
+    ],
+    "when_to_seek_help": "Seek professional help if anxiety interferes with daily life, work, or relationships, or if you have thoughts of self-harm"
+  }
+}

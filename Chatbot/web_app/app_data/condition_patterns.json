@@ -1,0 +1,10 @@
+{
+  "common_cold": ["runny_nose", "cough", "sore_throat", "fatigue", "sneezing"],
+  "influenza": ["fever", "cough", "headache", "muscle_pain", "chills", "fatigue", "sore_throat"],
+  "gastroenteritis": ["nausea", "vomiting", "diarrhea", "stomach_pain", "fever", "fatigue"],
+  "migraine": ["headache", "nausea", "blurred_vision", "sensitivity_to_light", "sensitivity_to_sound"],
+  "anxiety_disorder": ["chest_pain", "difficulty_breathing", "sweating", "anxiety", "rapid_heartbeat", "dizziness"],
+  "allergies": ["runny_nose", "itching", "skin_rash", "sneezing"],
+  "dehydration": ["dizziness", "fatigue", "headache", "rapid_heartbeat"],
+  "food_poisoning": ["nausea", "vomiting", "diarrhea", "stomach_pain", "fever"]
+}

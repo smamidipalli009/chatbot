@@ -1,0 +1,31 @@
+name: Build ML Model
+
+on:
+#  push:
+#    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Run Pipeline & Clean Up
+    runs-on: self-hosted
+
+    steps:
+    - name: Clean Workspace
+      run: |
+        echo "Cleaning runner workspace..."
+        rm -rf "$GITHUB_WORKSPACE"/*
+        echo "Workspace cleaned"
+
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Install Required Packages
+      run: |
+        pip install -r medical_chatbot/requirements.txt --break-system-packages
+
+    - name: Run ML Pipeline
+      run: |
+        ls -lthra
+        cd medical_chatbot
+        python3 main/run_pipeline.py

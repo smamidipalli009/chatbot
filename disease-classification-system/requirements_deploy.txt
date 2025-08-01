@@ -1,0 +1,66 @@
+# Disease Classification Pipeline Requirements
+# Compatible with Python 3.12
+# Generated for disease prediction ML project with web deployment
+
+# Core Data Science Libraries
+pandas>=2.2.3
+numpy>=2.1.0
+scikit-learn==1.7.0
+scipy>=1.11.0
+
+# Data Visualization
+matplotlib>=3.7.0,<4.0.0
+seaborn>=0.12.0,<1.0.0
+
+# Web Framework and Deployment
+Flask>=2.3.3
+waitress>=3.0.0
+
+# Environment and Configuration
+python-dotenv>=1.0.0
+
+# Optional ML Libraries (recommended)
+xgboost>=2.0.0,<3.0.0
+
+# Additional Data Processing
+openpyxl>=3.1.0             # Excel file support
+xlrd>=2.0.1                 # Excel file reading
+pillow>=10.0.0              # Image processing (if needed)
+
+# Development and Quality Tools (optional)
+jupyter>=1.0.0              # Jupyter notebooks
+ipykernel>=6.25.0           # Jupyter kernel
+pytest>=7.4.0              # Testing framework
+black>=23.7.0               # Code formatting
+flake8>=6.0.0               # Code linting
+
+# Web Development Support
+Jinja2>=3.1.2               # Template engine (Flask dependency)
+Werkzeug>=2.3.0             # WSGI utility library (Flask dependency)
+click>=8.1.0                # Command line interface creation
+itsdangerous>=2.1.0         # Secure cookie signing (Flask dependency)
+
+# Additional Utilities
+requests>=2.31.0            # HTTP library
+urllib3>=2.0.0              # HTTP client
+certifi>=2023.7.22          # SSL certificates
+
+# System Information
+# This requirements.txt is designed for:
+# - Python 3.12+
+# - Disease Classification ML Pipeline with Web Interface
+# - Cross-platform compatibility (Windows, macOS, Linux)
+# - Production deployment ready
+
+# Installation Instructions:
+# 1. Create virtual environment: python -m venv disease_ml_env
+# 2. Activate environment:
+#    - Windows: disease_ml_env\Scripts\activate
+#    - macOS/Linux: source disease_ml_env/bin/activate
+# 3. Install requirements: pip install -r requirements.txt
+
+# Note: 
+# - scikit-learn is pinned to version 1.7.0 for compatibility
+# - XGBoost is optional but recommended for better model performance
+# - Flask and waitress are included for web deployment
+# - Development tools are optional and can be skipped in production

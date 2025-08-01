@@ -1,0 +1,61 @@
+# Disease Classification System - Git Ignore File
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.egg
+
+# Virtual Environments
+disease_ml_env/
+environments/
+venv/
+env/
+
+# IDE and Editors
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and Reports
+logs/
+*.log
+reports/*.txt
+
+# Environment Variables
+.env
+
+# Temporary Files
+*.tmp
+temp/
+tmp/
+
+# Model Files (uncomment if models are too large for git)
+models/saved_models/*.pkl
+
+# Data Files (uncomment if data files are too large for git)
+data/raw/*.csv
+data/processed/*.csv
+
+# Backup Files
+*.bak
+*~
+
+disease-classification-system/environments/*
+
+disease-classification-system/src/__pycache__/*
+
+Chatbot/environments/*
+
+Chatbot/data/*
+
+Chatbot/src/
+
+Chatbot/log/
+
+Chatbot/models/analysis/*
+
+Chatbot/models/visualizations/*
+

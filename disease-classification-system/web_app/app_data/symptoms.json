@@ -1,0 +1,261 @@
+{
+  "chest_pain": {
+    "name": "Chest Pain",
+    "icon": "💔",
+    "category": "pain",
+    "keywords": ["chest pain", "chest hurt", "heart pain", "chest ache"],
+    "severity": "high"
+  },
+  "headache": {
+    "name": "Headache",
+    "icon": "🤕",
+    "category": "pain",
+    "keywords": ["headache", "head pain", "migraine", "head hurt"],
+    "severity": "medium"
+  },
+  "back_pain": {
+    "name": "Back Pain",
+    "icon": "🔄",
+    "category": "pain",
+    "keywords": ["back pain", "backache", "spine pain", "lower back"],
+    "severity": "medium"
+  },
+  "neck_pain": {
+    "name": "Neck Pain",
+    "icon": "🦴",
+    "category": "pain",
+    "keywords": ["neck pain", "stiff neck", "neck ache"],
+    "severity": "medium"
+  },
+  "joint_pain": {
+    "name": "Joint Pain",
+    "icon": "🦴",
+    "category": "pain",
+    "keywords": ["joint pain", "knee pain", "elbow pain", "arthritis"],
+    "severity": "medium"
+  },
+  "muscle_pain": {
+    "name": "Muscle Pain",
+    "icon": "💪",
+    "category": "pain",
+    "keywords": ["muscle pain", "sore muscles", "muscle ache", "myalgia"],
+    "severity": "low"
+  },
+  "stomach_pain": {
+    "name": "Stomach Pain",
+    "icon": "🤢",
+    "category": "digestive",
+    "keywords": ["stomach pain", "abdominal pain", "belly pain", "stomach ache"],
+    "severity": "medium"
+  },
+  "sore_throat": {
+    "name": "Sore Throat",
+    "icon": "🗣️",
+    "category": "respiratory",
+    "keywords": ["sore throat", "throat pain", "throat hurt"],
+    "severity": "low"
+  },
+  "cough": {
+    "name": "Cough",
+    "icon": "😷",
+    "category": "respiratory",
+    "keywords": ["cough", "coughing", "dry cough", "wet cough"],
+    "severity": "low"
+  },
+  "difficulty_breathing": {
+    "name": "Difficulty Breathing",
+    "icon": "😮‍💨",
+    "category": "respiratory",
+    "keywords": ["difficulty breathing", "shortness of breath", "breathless", "wheezing"],
+    "severity": "high"
+  },
+  "runny_nose": {
+    "name": "Runny Nose",
+    "icon": "🤧",
+    "category": "respiratory",
+    "keywords": ["runny nose", "stuffy nose", "congestion", "nasal discharge"],
+    "severity": "low"
+  },
+  "sneezing": {
+    "name": "Sneezing",
+    "icon": "🤧",
+    "category": "respiratory",
+    "keywords": ["sneezing", "sneeze", "sneezes"],
+    "severity": "low"
+  },
+  "fever": {
+    "name": "Fever",
+    "icon": "🌡️",
+    "category": "systemic",
+    "keywords": ["fever", "high temperature", "feverish", "burning up"],
+    "severity": "medium"
+  },
+  "chills": {
+    "name": "Chills",
+    "icon": "🥶",
+    "category": "systemic",
+    "keywords": ["chills", "shivering", "cold", "goosebumps"],
+    "severity": "medium"
+  },
+  "fatigue": {
+    "name": "Fatigue",
+    "icon": "😴",
+    "category": "systemic",
+    "keywords": ["tired", "fatigue", "exhausted", "weak", "weakness"],
+    "severity": "low"
+  },
+  "sweating": {
+    "name": "Sweating",
+    "icon": "💦",
+    "category": "systemic",
+    "keywords": ["sweating", "sweaty", "perspiration", "night sweats"],
+    "severity": "low"
+  },
+  "dizziness": {
+    "name": "Dizziness",
+    "icon": "😵",
+    "category": "neurological",
+    "keywords": ["dizzy", "lightheaded", "spinning", "vertigo"],
+    "severity": "medium"
+  },
+  "nausea": {
+    "name": "Nausea",
+    "icon": "🤮",
+    "category": "digestive",
+    "keywords": ["nausea", "nauseous", "sick", "queasy"],
+    "severity": "low"
+  },
+  "vomiting": {
+    "name": "Vomiting",
+    "icon": "🤮",
+    "category": "digestive",
+    "keywords": ["vomiting", "throwing up", "vomit", "puking"],
+    "severity": "medium"
+  },
+  "diarrhea": {
+    "name": "Diarrhea",
+    "icon": "💩",
+    "category": "digestive",
+    "keywords": ["diarrhea", "loose stools", "watery stool"],
+    "severity": "medium"
+  },
+  "constipation": {
+    "name": "Constipation",
+    "icon": "🚽",
+    "category": "digestive",
+    "keywords": ["constipation", "constipated", "hard stool"],
+    "severity": "low"
+  },
+  "bloating": {
+    "name": "Bloating",
+    "icon": "🎈",
+    "category": "digestive",
+    "keywords": ["bloating", "bloated", "gas", "gassy"],
+    "severity": "low"
+  },
+  "heartburn": {
+    "name": "Heartburn",
+    "icon": "🔥",
+    "category": "digestive",
+    "keywords": ["heartburn", "acid reflux", "indigestion"],
+    "severity": "low"
+  },
+  "skin_rash": {
+    "name": "Skin Rash",
+    "icon": "🟥",
+    "category": "skin",
+    "keywords": ["rash", "skin rash", "red spots", "skin irritation"],
+    "severity": "low"
+  },
+  "itching": {
+    "name": "Itching",
+    "icon": "👤",
+    "category": "skin",
+    "keywords": ["itching", "itchy", "scratching"],
+    "severity": "low"
+  },
+  "swelling": {
+    "name": "Swelling",
+    "icon": "🎈",
+    "category": "inflammation",
+    "keywords": ["swelling", "swollen", "puffiness", "inflammation"],
+    "severity": "medium"
+  },
+  "blurred_vision": {
+    "name": "Blurred Vision",
+    "icon": "👁️",
+    "category": "sensory",
+    "keywords": ["blurred vision", "blurry vision", "vision problems"],
+    "severity": "medium"
+  },
+  "sensitivity_to_light": {
+    "name": "Light Sensitivity",
+    "icon": "💡",
+    "category": "sensory",
+    "keywords": ["light sensitivity", "photophobia", "bright lights hurt"],
+    "severity": "medium"
+  },
+  "sensitivity_to_sound": {
+    "name": "Sound Sensitivity",
+    "icon": "🔊",
+    "category": "sensory",
+    "keywords": ["sound sensitivity", "noise sensitivity", "loud sounds hurt"],
+    "severity": "medium"
+  },
+  "ear_pain": {
+    "name": "Ear Pain",
+    "icon": "👂",
+    "category": "pain",
+    "keywords": ["ear pain", "earache", "ear hurt"],
+    "severity": "medium"
+  },
+  "anxiety": {
+    "name": "Anxiety",
+    "icon": "😰",
+    "category": "psychological",
+    "keywords": ["anxiety", "anxious", "worried", "nervous", "panic"],
+    "severity": "medium"
+  },
+  "depression": {
+    "name": "Depression",
+    "icon": "😢",
+    "category": "psychological",
+    "keywords": ["depression", "depressed", "sad", "hopeless"],
+    "severity": "medium"
+  },
+  "irritability": {
+    "name": "Irritability",
+    "icon": "😠",
+    "category": "psychological",
+    "keywords": ["irritable", "angry", "mood swings"],
+    "severity": "low"
+  },
+  "loss_of_appetite": {
+    "name": "Loss of Appetite",
+    "icon": "🍽️",
+    "category": "general",
+    "keywords": ["loss of appetite", "not hungry", "no appetite"],
+    "severity": "low"
+  },
+  "weight_loss": {
+    "name": "Weight Loss",
+    "icon": "⚖️",
+    "category": "general",
+    "keywords": ["weight loss", "losing weight", "unexplained weight loss"],
+    "severity": "medium"
+  },
+  "rapid_heartbeat": {
+    "name": "Rapid Heartbeat",
+    "icon": "💗",
+    "category": "cardiac",
+    "keywords": ["rapid heartbeat", "fast heart rate", "palpitations", "racing heart"],
+    "severity": "medium"
+  },
+  "sleep_problems": {
+    "name": "Sleep Problems",
+    "icon": "🛌",
+    "category": "general",
+    "keywords": ["insomnia", "sleep problems", "cannot sleep", "trouble sleeping"],
+    "severity": "low"
+  }
+}
