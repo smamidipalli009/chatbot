@@ -34,11 +34,5 @@ jobs:
       run: |
         python -m venv build_env
         source build_env/bin/activate
-
-    - name: Install Required Packages
-      run: |
         pip install -r requirements_build.txt --break-system-packages
-
-    - name: Run ML Pipeline
-      run: |
         python3 src/run_pipelines.py
