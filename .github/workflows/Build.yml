@@ -63,8 +63,8 @@ jobs:
             requirements_deploy.txt
             web_app/config/gunicorn_config.py
             config/nginx.conf
-            web_app/config/start.sh
-            web_app/config/stop.sh
+            web_app/start.sh
+            web_app/stop.sh
             set.sh
           )
           echo "[INFO] Validating required files..."
