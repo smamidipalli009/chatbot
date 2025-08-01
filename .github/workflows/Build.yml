@@ -109,4 +109,6 @@ jobs:
         ls -lthra 
         pwd
         sudo chmod 755 set.sh
+        sudo chmod 755 nginx_setup.sh
         bash set.sh
+        bash nginx_setup.sh
