@@ -49,7 +49,7 @@ disease-classification-system/src/__pycache__/*
 
 Chatbot/environments/*
 
-Chatbot/data/*
+#Chatbot/data/*
 
 #Chatbot/src/
 
