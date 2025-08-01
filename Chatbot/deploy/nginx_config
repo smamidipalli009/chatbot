@@ -1,8 +1,9 @@
-# Nginx configuration
+# Nginx configuration for your directory structure
+# This file should be named nginx_config (no .conf extension)
 
 worker_processes 1;
-error_log ../logs/nginx_error.log;
-pid ../nginx.pid;
+error_log logs/nginx_error.log;
+pid nginx.pid;
 
 events {
     worker_connections 1024;
@@ -14,7 +15,7 @@ http {
     default_type  application/octet-stream;
     
     # Logging
-    access_log ../logs/nginx_access.log;
+    access_log logs/nginx_access.log;
     
     # Basic performance
     sendfile on;
@@ -46,7 +47,7 @@ http {
         
         # Serve static files directly (optional)
         location /static/ {
-            alias ../web_app/static/;
+            alias web_app/static/;
             expires 1d;
             add_header Cache-Control "public, immutable";
         }
