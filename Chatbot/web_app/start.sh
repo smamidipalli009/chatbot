@@ -2,18 +2,27 @@
 
 echo "Starting Medical App..."
 
-# Kill existing gunicorn processes
-echo "Killing existing processes..."
+# Kill existing processes
 pkill -f gunicorn 2>/dev/null || true
 sleep 2
 
-# Start gunicorn and save PID
-echo "Starting Gunicorn..."
-nohup ../deploy_env/bin/gunicorn --config config/gunicorn_config.py app:app &
-GUNICORN_PID=$!
+# Create logs directory
+mkdir -p ../logs
 
-# Save PID to file
-echo $GUNICORN_PID > gunicorn.pid
-echo "Gunicorn started with PID: $GUNICORN_PID"
+# Start gunicorn as daemon (best for automation)
+echo "Starting Gunicorn daemon..."
+../deploy_env/bin/gunicorn --config config/gunicorn_config.py --daemon app:app
 
-echo "App started successfully!"
+# Wait and get PID
+sleep 2
+GUNICORN_PID=$(pgrep -f "gunicorn.*app:app")
+
+if [ -n "$GUNICORN_PID" ]; then
+    echo $GUNICORN_PID > gunicorn.pid
+    echo "Gunicorn started successfully with PID: $GUNICORN_PID"
+    echo "App accessible at: http://localhost:9090"
+    exit 0
+else
+    echo "ERROR: Gunicorn failed to start"
+    exit 1
+fi
