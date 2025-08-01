@@ -18,6 +18,8 @@ pip3 install --upgrade pip setuptools wheel  --break-system-packages
 # Install requirements (fixed filename)
 pip3 install -r requirements_deploy.txt  --break-system-packages
 
+nohup deploy_env/bin/gunicorn --bind 0.0.0.0:9090 --workers 2 run_chatbot:app > gunicorn.log 2>&1 &
+
 #deactivate
 # Make scripts executable
 #chmod +x web_app/start.sh web_app/stop.sh
