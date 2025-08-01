@@ -1,13 +1,11 @@
-name: Build ML Model
+name: Build and Validate ML Model
 
 on:
-#  push:
-#    branches: [ main ]
-  workflow_dispatch:
+  workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
   build:
-    name: Run Pipeline & Clean Up
+    name: Execute Model Training and Validation
     runs-on: self-hosted
 
     defaults:
@@ -15,28 +13,28 @@ jobs:
         working-directory: Chatbot
 
     steps:
-    - name: Clean Workspace
+    - name: Initialize Workspace
       run: |
         echo "Cleaning runner workspace..."
         rm -rf "$GITHUB_WORKSPACE"/*
         echo "Workspace cleaned"
 
-    - name: Checkout Code
+    - name: Retrieve Source Code
       uses: actions/checkout@v3
 
-    - name: Install Required Packages
+    - name: Set Up Environment and Train Model
       run: |
         python -m venv build_env
         source build_env/bin/activate
         pip install -r requirements_build.txt --break-system-packages
         python3 src/run_pipelines.py
 
-    - name: Validate Model File Existence
+    - name: Verify Model Artifact
       id: check_model_file
       uses: andstor/file-existence-action@v1
       with:
         files: models/saved_models/disease_classification_model.pkl
 
-    - name: Build Successful (if model exists)
+    - name: Confirm Model Build Success
       if: steps.check_model_file.outputs.files_exists == 'true'
       run: echo "Model file exists! Build is successful."
