@@ -18,7 +18,6 @@ jobs:
     - name: Clean Workspace
       run: |
         echo "Cleaning runner workspace..."
-        #rm -rf "$GITHUB_WORKSPACE"/*
         echo "Workspace cleaned"
 
     - name: Checkout Code
