@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SymptomAI - Smart Health Analysis Tool</title>
+    <title>Clinical Symptom Assessment System - AI Medical Diagnostic Tool</title>
     <style>
         * {
             margin: 0;
@@ -93,26 +93,12 @@
         }
 
         [data-theme="dark"] .bot-avatar {
-            background: #1e293b;
-            color: #60a5fa;
-            border: 3px solid #60a5fa;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: 2px solid #1e293b;
         }
 
         [data-theme="dark"] .bot-avatar::before {
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-        }
-
-        [data-theme="dark"] .message.bot .message-avatar {
-            background: #1e293b;
-            color: #60a5fa;
-            border: 2px solid #60a5fa;
-        }
-
-        /* Dark mode typing indicator */
-        [data-theme="dark"] .typing-indicator .message-avatar {
-            background: #1e293b !important;
-            color: #60a5fa !important;
-            border: 2px solid #60a5fa !important;
+            background: linear-gradient(45deg, #3b82f6, #22c55e);
         }
 
         [data-theme="dark"] .chat-container::before {
@@ -673,16 +659,16 @@
         .bot-avatar {
             width: 44px;
             height: 44px;
-            background: white;
+            background: linear-gradient(135deg, var(--medical-blue) 0%, var(--primary-500) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
-            color: var(--medical-blue);
+            color: white;
             box-shadow: var(--shadow-medical);
             position: relative;
-            border: 3px solid var(--medical-blue);
+            border: 2px solid white;
         }
 
         .bot-avatar::before {
@@ -768,9 +754,8 @@
         }
 
         .message.bot .message-avatar {
-            background: white;
-            color: var(--medical-blue);
-            border: 2px solid var(--medical-blue);
+            background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+            color: white;
         }
 
         .message.user .message-avatar {
@@ -1954,6 +1939,12 @@
             color: #92400e;
         }
 
+        [data-theme="dark"] .alert-message {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+            color: #fbbf24;
+            border-color: #f59e0b;
+        }
+
         .emergency-message {
             background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
             border: 1px solid var(--error-500);
@@ -1962,6 +1953,12 @@
             margin-top: 8px;
             font-size: 12px;
             color: #991b1b;
+        }
+
+        [data-theme="dark"] .emergency-message {
+            background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
+            color: #f87171;
+            border-color: #ef4444;
         }
 
         .message-list {
@@ -2237,10 +2234,10 @@
         <header class="chat-header">
             <div class="bot-avatar">⚕️</div>
             <div class="bot-info">
-                <div class="bot-name">SymptomAI</div>
+                <div class="bot-name">Clinical Symptom Assessment System</div>
                 <div class="bot-status">
                     <span class="status-dot"></span>
-                    <span>Smart health analysis</span>
+                    <span>Advanced Diagnostic Decision Support</span>
                 </div>
             </div>
         </header>
@@ -2249,8 +2246,8 @@
         <div class="messages-container" id="messages">
             <div class="welcome-animation">
                 <div class="medical-hero">⚕️</div>
-                <h2 class="welcome-title">SymptomAI</h2>
-                <p class="welcome-subtitle">Smart health analysis powered by AI. Get insights about your symptoms with intelligent pattern recognition and medical guidance.</p>
+                <h2 class="welcome-title">Clinical Symptom Assessment System</h2>
+                <p class="welcome-subtitle">AI-powered diagnostic decision support with comprehensive medical database, symptom correlation analysis, and clinical pattern matching algorithms.</p>
             </div>
             
             <!-- Symptom Progress Tracker -->
@@ -2266,7 +2263,7 @@
         <!-- Typing Indicator (Hidden by default) -->
         <div class="typing-indicator" id="typing" style="display: none;">
             <div class="message-wrapper">
-                <div class="message-avatar" style="background: white; color: var(--medical-blue); border: 2px solid var(--medical-blue);">⚕️</div>
+                <div class="message-avatar" style="background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%); color: white;">⚕️</div>
                 <div class="typing-bubble">
                     <div class="typing-dots">
                         <div class="typing-dot"></div>
@@ -2317,101 +2314,6 @@
         let isEmergencyActive = false;
         let selectedIndex = -1;
 
-        // Mock symptom database for demo purposes
-        const mockSymptomDatabase = {
-            1: { id: '1', name: 'Headache', category: 'pain', icon: '🤕', severity: 'mild' },
-            2: { id: '2', name: 'Chest Pain', category: 'pain', icon: '💔', severity: 'severe' },
-            3: { id: '3', name: 'Fever', category: 'systemic', icon: '🌡️', severity: 'moderate' },
-            4: { id: '4', name: 'Cough', category: 'respiratory', icon: '😷', severity: 'mild' },
-            5: { id: '5', name: 'Nausea', category: 'digestive', icon: '🤢', severity: 'moderate' },
-            6: { id: '6', name: 'Dizziness', category: 'neurological', icon: '😵', severity: 'moderate' },
-            7: { id: '7', name: 'Fatigue', category: 'systemic', icon: '😴', severity: 'mild' },
-            8: { id: '8', name: 'Shortness of Breath', category: 'respiratory', icon: '🫁', severity: 'severe' },
-            9: { id: '9', name: 'Abdominal Pain', category: 'digestive', icon: '🤰', severity: 'moderate' },
-            10: { id: '10', name: 'Joint Pain', category: 'pain', icon: '🦴', severity: 'moderate' }
-        };
-
-        const mockSymptomSuggestions = {
-            'head': [
-                { id: '1', name: 'Headache', category: 'pain', icon: '🤕', match_type: 'direct_match' },
-                { id: '6', name: 'Dizziness', category: 'neurological', icon: '😵', match_type: 'keyword_match' }
-            ],
-            'pain': [
-                { id: '1', name: 'Headache', category: 'pain', icon: '🤕', match_type: 'keyword_match' },
-                { id: '2', name: 'Chest Pain', category: 'pain', icon: '💔', match_type: 'keyword_match' },
-                { id: '9', name: 'Abdominal Pain', category: 'digestive', icon: '🤰', match_type: 'keyword_match' },
-                { id: '10', name: 'Joint Pain', category: 'pain', icon: '🦴', match_type: 'keyword_match' }
-            ],
-            'chest': [
-                { id: '2', name: 'Chest Pain', category: 'pain', icon: '💔', match_type: 'direct_match' },
-                { id: '8', name: 'Shortness of Breath', category: 'respiratory', icon: '🫁', match_type: 'keyword_match' }
-            ],
-            'fever': [
-                { id: '3', name: 'Fever', category: 'systemic', icon: '🌡️', match_type: 'direct_match' }
-            ],
-            'cough': [
-                { id: '4', name: 'Cough', category: 'respiratory', icon: '😷', match_type: 'direct_match' },
-                { id: '8', name: 'Shortness of Breath', category: 'respiratory', icon: '🫁', match_type: 'keyword_match' }
-            ],
-            'nausea': [
-                { id: '5', name: 'Nausea', category: 'digestive', icon: '🤢', match_type: 'direct_match' },
-                { id: '9', name: 'Abdominal Pain', category: 'digestive', icon: '🤰', match_type: 'keyword_match' }
-            ],
-            'dizzy': [
-                { id: '6', name: 'Dizziness', category: 'neurological', icon: '😵', match_type: 'direct_match' },
-                { id: '1', name: 'Headache', category: 'pain', icon: '🤕', match_type: 'keyword_match' }
-            ],
-            'tired': [
-                { id: '7', name: 'Fatigue', category: 'systemic', icon: '😴', match_type: 'keyword_match' }
-            ],
-            'breath': [
-                { id: '8', name: 'Shortness of Breath', category: 'respiratory', icon: '🫁', match_type: 'keyword_match' },
-                { id: '2', name: 'Chest Pain', category: 'pain', icon: '💔', match_type: 'keyword_match' }
-            ],
-            'stomach': [
-                { id: '9', name: 'Abdominal Pain', category: 'digestive', icon: '🤰', match_type: 'keyword_match' },
-                { id: '5', name: 'Nausea', category: 'digestive', icon: '🤢', match_type: 'keyword_match' }
-            ]
-        };
-
-        const mockSymptomBatches = [
-            {
-                batch_id: 1,
-                name: 'Common Symptoms',
-                symptoms: [
-                    { id: '1', name: 'Headache', category: 'pain', icon: '🤕' },
-                    { id: '3', name: 'Fever', category: 'systemic', icon: '🌡️' },
-                    { id: '4', name: 'Cough', category: 'respiratory', icon: '😷' },
-                    { id: '7', name: 'Fatigue', category: 'systemic', icon: '😴' },
-                    { id: '5', name: 'Nausea', category: 'digestive', icon: '🤢' },
-                    { id: '6', name: 'Dizziness', category: 'neurological', icon: '😵' }
-                ]
-            },
-            {
-                batch_id: 2,
-                name: 'Pain & Discomfort',
-                symptoms: [
-                    { id: '2', name: 'Chest Pain', category: 'pain', icon: '💔' },
-                    { id: '9', name: 'Abdominal Pain', category: 'digestive', icon: '🤰' },
-                    { id: '10', name: 'Joint Pain', category: 'pain', icon: '🦴' },
-                    { id: '11', name: 'Back Pain', category: 'pain', icon: '🦴' },
-                    { id: '12', name: 'Muscle Aches', category: 'pain', icon: '💪' },
-                    { id: '13', name: 'Tooth Pain', category: 'pain', icon: '🦷' }
-                ]
-            },
-            {
-                batch_id: 3,
-                name: 'Respiratory & Circulation',
-                symptoms: [
-                    { id: '8', name: 'Shortness of Breath', category: 'respiratory', icon: '🫁' },
-                    { id: '14', name: 'Wheezing', category: 'respiratory', icon: '🌪️' },
-                    { id: '15', name: 'Rapid Heartbeat', category: 'systemic', icon: '💓' },
-                    { id: '16', name: 'Chest Tightness', category: 'respiratory', icon: '🫁' },
-                    { id: '17', name: 'Shallow Breathing', category: 'respiratory', icon: '😮‍💨' }
-                ]
-            }
-        ];
-
         // DOM Elements
         const messagesContainer = document.getElementById('messages');
         const messageInput = document.getElementById('messageInput');
@@ -2434,8 +2336,7 @@
         });
 
         function loadSavedTheme() {
-            // Since we can't use localStorage, just keep default theme
-            currentTheme = 'light';
+            currentTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', currentTheme);
             updateThemeToggle();
         }
@@ -2443,6 +2344,7 @@
         function toggleTheme() {
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             document.body.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
             updateThemeToggle();
         }
 
@@ -2501,87 +2403,6 @@
                     { text: "Return to Assessment", action: "restart" }
                 ]
             );
-        }
-
-        // Mock API functions
-        async function mockFetchSymptomSuggestions(query) {
-            await new Promise(resolve => setTimeout(resolve, 100)); // Simulate API delay
-            
-            const lowerQuery = query.toLowerCase();
-            for (const [key, suggestions] of Object.entries(mockSymptomSuggestions)) {
-                if (lowerQuery.includes(key)) {
-                    return { success: true, suggestions };
-                }
-            }
-            
-            // Fallback - return some common symptoms
-            return { 
-                success: true, 
-                suggestions: [
-                    { id: '1', name: 'Headache', category: 'pain', icon: '🤕', match_type: 'keyword_match' },
-                    { id: '3', name: 'Fever', category: 'systemic', icon: '🌡️', match_type: 'keyword_match' }
-                ]
-            };
-        }
-
-        async function mockFetchSymptomInfo(symptomId) {
-            await new Promise(resolve => setTimeout(resolve, 50)); // Simulate API delay
-            
-            const symptom = mockSymptomDatabase[symptomId];
-            if (symptom) {
-                return { success: true, symptom };
-            } else {
-                return { success: false, error: 'Symptom not found' };
-            }
-        }
-
-        async function mockFetchSymptomBatch(batchId) {
-            await new Promise(resolve => setTimeout(resolve, 200)); // Simulate API delay
-            
-            if (batchId <= mockSymptomBatches.length) {
-                const batch = mockSymptomBatches[batchId - 1];
-                return {
-                    success: true,
-                    batch_info: batch,
-                    has_more_batches: batchId < mockSymptomBatches.length
-                };
-            } else {
-                return { success: false, error: 'No more batches' };
-            }
-        }
-
-        async function mockAnalyzeSymptoms(symptoms) {
-            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate analysis delay
-            
-            const mockConditions = [
-                {
-                    id: 'condition_1',
-                    name: 'Viral Upper Respiratory Infection',
-                    confidence: 'High',
-                    match_percentage: 85,
-                    matched_symptoms: Math.min(symptoms.length, 4)
-                },
-                {
-                    id: 'condition_2',
-                    name: 'Tension Headache Syndrome',
-                    confidence: 'Medium',
-                    match_percentage: 72,
-                    matched_symptoms: Math.min(symptoms.length, 3)
-                },
-                {
-                    id: 'condition_3',
-                    name: 'General Fatigue Syndrome',
-                    confidence: 'Medium',
-                    match_percentage: 68,
-                    matched_symptoms: Math.min(symptoms.length, 2)
-                }
-            ];
-            
-            return {
-                success: true,
-                conditions: mockConditions,
-                total_symptoms_analyzed: symptoms.length
-            };
         }
 
         // Enhanced Symptom Suggestion System
@@ -2664,7 +2485,8 @@
 
         async function showSymptomSuggestions(query) {
             try {
-                const data = await mockFetchSymptomSuggestions(query);
+                const response = await fetch(`/api/suggest-symptoms/${encodeURIComponent(query)}`);
+                const data = await response.json();
                 
                 if (data.success && data.suggestions.length > 0) {
                     suggestionDropdown.innerHTML = '';
@@ -2793,7 +2615,7 @@
             
             skeletonDiv.innerHTML = `
                 <div class="message-wrapper">
-                    <div class="message-avatar" style="background: white; color: var(--medical-blue); border: 2px solid var(--medical-blue);">🩺</div>
+                    <div class="message-avatar">🩺</div>
                     <div class="message-content">
                         <div class="message-bubble">
                             <div class="skeleton"></div>
@@ -2990,8 +2812,8 @@
                 messagesContainer.innerHTML = `
                     <div class="welcome-animation">
                         <div class="medical-hero">🩺</div>
-                        <h2 class="welcome-title">SymptomAI</h2>
-                        <p class="welcome-subtitle">Smart health analysis powered by AI. Get insights about your symptoms with intelligent pattern recognition and medical guidance.</p>
+                        <h2 class="welcome-title">Clinical Symptom Assessment System</h2>
+                        <p class="welcome-subtitle">AI-powered diagnostic decision support with comprehensive medical database, symptom correlation analysis, and clinical pattern matching algorithms.</p>
                     </div>
                     
                     <div class="symptom-progress" id="symptomProgress">
@@ -3018,11 +2840,11 @@
             
             if (isBatchMode) {
                 modeSwitch.classList.add('batch-mode');
-                if (symptomGrid) symptomGrid.classList.add('batch-mode');
+                symptomGrid.classList.add('batch-mode');
                 showSuccessAnimation('Batch Selection Mode 📋');
             } else {
                 modeSwitch.classList.remove('batch-mode');
-                if (symptomGrid) symptomGrid.classList.remove('batch-mode');
+                symptomGrid.classList.remove('batch-mode');
                 clearSelectedSymptoms();
                 showSuccessAnimation('Quick Add Mode ⚡');
             }
@@ -3047,11 +2869,11 @@
             if (selectedBatchSymptoms.has(symptomId)) {
                 // Deselect
                 selectedBatchSymptoms.delete(symptomId);
-                if (button) button.classList.remove('selected');
+                button.classList.remove('selected');
             } else {
                 // Select
                 selectedBatchSymptoms.add(symptomId);
-                if (button) button.classList.add('selected');
+                button.classList.add('selected');
             }
             
             updateBatchControls();
@@ -3123,7 +2945,8 @@
             // Get symptom names
             for (const symptomId of selectedSymptomIds) {
                 try {
-                    const data = await mockFetchSymptomInfo(symptomId);
+                    const response = await fetch(`/api/symptom-info/${symptomId}`);
+                    const data = await response.json();
                     if (data.success) {
                         symptomNames.push(data.symptom.name);
                     } else {
@@ -3168,14 +2991,14 @@
         function hideSymptomTooltip() {
             // Clean up tooltip if needed
         }
-
         async function showVisualSymptomSummary() {
             if (userSymptoms.length === 0) return '';
             
             const symptomTags = [];
             for (const symptomId of userSymptoms) {
                 try {
-                    const data = await mockFetchSymptomInfo(symptomId);
+                    const response = await fetch(`/api/symptom-info/${symptomId}`);
+                    const data = await response.json();
                     if (data.success) {
                         symptomTags.push(`
                             <div class="symptom-tag symptom-category-${data.symptom.category}">
@@ -3211,7 +3034,8 @@
             userSymptoms = userSymptoms.filter(id => id !== symptomId);
             updateSymptomProgress();
             
-            const data = await mockFetchSymptomInfo(symptomId);
+            const response = await fetch(`/api/symptom-info/${symptomId}`);
+            const data = await response.json();
             const symptomName = data.success ? data.symptom.name : symptomId;
             
             showSuccessAnimation(`Removed ${symptomName} ✂️`);
@@ -3337,10 +3161,10 @@
         async function startConversation() {
             await showTypingIndicator(1500);
             addBotMessage(
-                "Welcome to SymptomAI! I provide smart health analysis through comprehensive symptom assessment and AI-powered insights.",
+                "Welcome to the Clinical Symptom Assessment System. I provide advanced diagnostic decision support through comprehensive symptom analysis.",
                 [
                     { text: "Begin Symptom Assessment", action: "start_symptoms" },
-                    { text: "How SymptomAI Works", action: "explain_process" },
+                    { text: "System Capabilities", action: "explain_process" },
                     { text: "Emergency Protocols", action: "emergency" }
                 ]
             );
@@ -3404,7 +3228,8 @@
             await showTypingIndicator(1500);
             
             try {
-                const data = await mockFetchSymptomSuggestions(message);
+                const response = await fetch('/api/suggest-symptoms/' + encodeURIComponent(message));
+                const data = await response.json();
                 
                 if (data.success && data.suggestions.length > 0) {
                     const detectedSymptoms = data.suggestions.slice(0, 3);
@@ -3432,7 +3257,8 @@
 
         async function handleSymptomInput(message) {
             try {
-                const data = await mockFetchSymptomSuggestions(message);
+                const response = await fetch('/api/suggest-symptoms/' + encodeURIComponent(message));
+                const data = await response.json();
                 
                 if (data.success && data.suggestions.length > 0) {
                     const newSymptoms = data.suggestions.slice(0, 2);
@@ -3479,7 +3305,8 @@
             try {
                 const names = [];
                 for (const id of symptomIds) {
-                    const data = await mockFetchSymptomInfo(id);
+                    const response = await fetch(`/api/symptom-info/${id}`);
+                    const data = await response.json();
                     if (data.success) {
                         names.push(data.symptom.name);
                     }
@@ -3496,7 +3323,8 @@
             showLoadingSkeleton();
             
             try {
-                const data = await mockFetchSymptomBatch(currentSymptomBatch);
+                const response = await fetch(`/api/symptom-batches/${currentSymptomBatch}`);
+                const data = await response.json();
                 
                 hideLoadingSkeleton();
                 
@@ -3706,7 +3534,13 @@
 
         async function showEnhancedResults() {
             try {
-                const data = await mockAnalyzeSymptoms(userSymptoms);
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ symptoms: userSymptoms })
+                });
+                
+                const data = await response.json();
                 
                 if (data.success) {
                     await showTypingIndicator(1500);
@@ -3790,7 +3624,7 @@
                     break;
                     
                 case 'explain_process':
-                    addUserMessage("How SymptomAI Works");
+                    addUserMessage("System Capabilities");
                     await explainProcess();
                     break;
                     
@@ -3877,7 +3711,8 @@
             
             for (const symptomId of userSymptoms) {
                 try {
-                    const data = await mockFetchSymptomInfo(symptomId);
+                    const response = await fetch(`/api/symptom-info/${symptomId}`);
+                    const data = await response.json();
                     if (data.success) {
                         const chip = document.createElement('div');
                         chip.className = 'symptom-chip';
@@ -3934,16 +3769,16 @@
         async function explainProcess() {
             await showTypingIndicator(2000);
             addBotMessage(
-                `🏥 <strong>How SymptomAI Works:</strong><br><br>
-                1️⃣ <strong>Smart Recognition:</strong> I understand your symptoms using natural language<br>
-                2️⃣ <strong>Medical Database:</strong> Access to comprehensive health information<br>
-                3️⃣ <strong>AI Analysis:</strong> Pattern matching with medical knowledge<br>
-                4️⃣ <strong>Health Insights:</strong> Get personalized health guidance<br>
-                5️⃣ <strong>Emergency Support:</strong> Quick access to emergency protocols<br><br>
-                I'm here to help you understand your symptoms and guide you toward appropriate care.`,
+                `🏥 <strong>Clinical Assessment System Capabilities:</strong><br><br>
+                1️⃣ <strong>Symptom Recognition:</strong> Advanced pattern matching with clinical correlation<br>
+                2️⃣ <strong>Medical Database:</strong> Comprehensive clinical symptom repository<br>
+                3️⃣ <strong>Diagnostic Support:</strong> Evidence-based condition assessment algorithms<br>
+                4️⃣ <strong>Pattern Analysis:</strong> Multi-symptom correlation and severity weighting<br>
+                5️⃣ <strong>Emergency Detection:</strong> Critical symptom identification and triage protocols<br><br>
+                System integrates with clinical decision-making processes for comprehensive patient evaluation.`,
                 [
-                    { text: "Start Assessment", action: "start_symptoms" },
-                    { text: "Emergency Help", action: "emergency" }
+                    { text: "Begin Assessment", action: "start_symptoms" },
+                    { text: "Emergency Protocols", action: "emergency" }
                 ]
             );
         }
@@ -4025,7 +3860,8 @@
             const symptomNames = [];
             for (const symptomId of userSymptoms) {
                 try {
-                    const data = await mockFetchSymptomInfo(symptomId);
+                    const response = await fetch(`/api/symptom-info/${symptomId}`);
+                    const data = await response.json();
                     if (data.success) {
                         symptomNames.push(`${data.symptom.icon} ${data.symptom.name} (${data.symptom.category})`);
                     }
@@ -4092,7 +3928,8 @@
             const symptomNames = [];
             for (const symptomId of userSymptoms) {
                 try {
-                    const data = await mockFetchSymptomInfo(symptomId);
+                    const response = await fetch(`/api/symptom-info/${symptomId}`);
+                    const data = await response.json();
                     if (data.success) {
                         symptomNames.push(`• ${data.symptom.name} (${data.symptom.category} - ${data.symptom.severity} severity)`);
                     }
@@ -4104,7 +3941,7 @@
             const reportDate = new Date().toLocaleDateString();
             const reportTime = new Date().toLocaleTimeString();
             
-            let healthReport = `SYMPTOM AI - HEALTH ANALYSIS REPORT
+            let healthReport = `CLINICAL SYMPTOM ASSESSMENT SYSTEM - DIAGNOSTIC REPORT
 =====================================================
 
 Generated: ${reportDate} at ${reportTime}
@@ -4135,18 +3972,18 @@ MEDICAL CONSULTATION GUIDELINES:
 CLINICAL TOOL NOTICE:
 This system provides clinical decision support. Results should be validated through professional medical consultation for definitive diagnosis and treatment planning.
 
-Report generated by SymptomAI - Smart Health Analysis
+Report generated by Clinical Symptom Assessment System
 Healthcare Provider Consultation: Recommended for validation
 Emergency Services: Call 911 or local emergency number
 
 =====================================================
-End of Health Analysis Report`;
+End of Clinical Report`;
 
             const blob = new Blob([healthReport], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `symptom-ai-report-${reportDate.replace(/\//g, '-')}.txt`;
+            a.download = `clinical-assessment-report-${reportDate.replace(/\//g, '-')}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -4183,7 +4020,7 @@ End of Health Analysis Report`;
                 "✅ <strong>Assessment Session Reset</strong><br><br>System cleared. Ready to initiate new clinical symptom assessment.",
                 [
                     { text: "Begin New Assessment", action: "start_symptoms" },
-                    { text: "How SymptomAI Works", action: "explain_process" }
+                    { text: "System Capabilities", action: "explain_process" }
                 ]
             );
         }
@@ -4195,7 +4032,7 @@ End of Health Analysis Report`;
                 "Select your preferred clinical assessment option:",
                 [
                     { text: "New Symptom Assessment", action: "restart" },
-                    { text: "How SymptomAI Works", action: "explain_process" },
+                    { text: "System Capabilities", action: "explain_process" },
                     { text: "Emergency Protocols", action: "emergency" }
                 ]
             );
@@ -4231,7 +4068,7 @@ End of Health Analysis Report`;
                 "I'm here to help with comprehensive symptom analysis and health insights. For the best assistance, please describe any symptoms you're experiencing.",
                 [
                     { text: "I have symptoms", action: "start_symptoms" },
-                    { text: "How SymptomAI works", action: "explain_process" }
+                    { text: "Show me what you can do", action: "explain_process" }
                 ]
             );
         }
@@ -4317,12 +4154,12 @@ End of Health Analysis Report`;
 
         function exportConversation() {
             const messages = Array.from(messagesContainer.querySelectorAll('.message'));
-            let conversationText = 'SymptomAI - Health Analysis Chat Log\n';
+            let conversationText = 'Clinical Symptom Assessment System - Conversation Log\n';
             conversationText += '=================================================\n\n';
             
             messages.forEach(msg => {
                 const isUser = msg.classList.contains('user');
-                const speaker = isUser ? 'Patient' : 'SymptomAI';
+                const speaker = isUser ? 'Patient' : 'Clinical System';
                 const content = msg.querySelector('.message-bubble').textContent.trim();
                 const timestamp = msg.querySelector('.message-timestamp').textContent;
                 
@@ -4333,7 +4170,7 @@ End of Health Analysis Report`;
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `symptom-ai-chat-${new Date().toISOString().split('T')[0]}.txt`;
+            a.download = `clinical-assessment-conversation-${new Date().toISOString().split('T')[0]}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
