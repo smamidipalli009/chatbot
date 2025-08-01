@@ -93,4 +93,5 @@ jobs:
       run: |
         ls -lthra 
         pwd
+        cd dist
         bash set.sh
