@@ -66,6 +66,7 @@ jobs:
             web_app/start.sh
             web_app/stop.sh
             nginx_setup.sh
+            run_chatbot.py
             set.sh
           )
           echo "[INFO] Validating required files..."
@@ -88,6 +89,7 @@ jobs:
           cp -rf config dist/mlchatbot-app/
           cp set.sh dist/mlchatbot-app/
           cp nginx_setup.sh dist/mlchatbot-app/
+          cp run_chatbot.py dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
 
     - name: Permissions update
@@ -105,7 +107,7 @@ jobs:
     - name: start gunicorn
       run: |
         cd dist/mlchatbot-app
-        sudo bash web_app/start.sh
+        nohup deploy_env/bin/gunicorn --bind 0.0.0.0:9090 --workers 2 run_chatbot:app > gunicorn.log 2>&1 &
 
     - name: start nginx
       run: |
