@@ -94,10 +94,17 @@ jobs:
         pwd
         ls -lthra 
 
+    - name: dist paths
+      run: |
+        cd dist/mlchatbot-app
+        pwd
+        pwd
+        ls -lthra 
+
     - name: Validate zip contents
       run: |
+        cd dist/mlchatbot-app
         ls -lthra 
         pwd
-        cd dist/mlchatbot-app
         sudo chmod 755 set.sh
         bash set.sh
