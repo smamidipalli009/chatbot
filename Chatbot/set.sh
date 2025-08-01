@@ -25,3 +25,7 @@ chmod +x web_app/start.sh web_app/stop.sh
 # Start the application
 cd web_app
 bash start.sh
+
+
+cd ../
+bash ngnix_setup.sh
