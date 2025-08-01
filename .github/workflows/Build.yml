@@ -90,25 +90,24 @@ jobs:
           cp nginx_setup.sh dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
 
-    - name: paths
-      run: |
-        pwd
-        pwd
-        ls -lthra 
-
-    - name: dist paths
+    - name: Permissions update
       run: |
         cd dist/mlchatbot-app
-        pwd
-        pwd
-        ls -lthra 
-
-    - name: Validate zip contents
-      run: |
-        cd dist/mlchatbot-app
-        ls -lthra 
-        pwd
+        sudo chmod 755 web_app/*.sh
         sudo chmod 755 set.sh
         sudo chmod 755 nginx_setup.sh
+
+    - name: Install dependencies
+      run: |
+        cd dist/mlchatbot-app
         bash set.sh
+
+    - name: start gunicorn
+      run: |
+        cd dist/mlchatbot-app
+        sudo bash web_app/start.sh
+
+    - name: start nginx
+      run: |
+        cd dist/mlchatbot-app
         bash nginx_setup.sh
