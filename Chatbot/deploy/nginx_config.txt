@@ -1,0 +1,62 @@
+# Very basic Nginx configuration for lab environment
+# Place this in deploy/ folder
+
+worker_processes 1;
+error_log ../logs/nginx_error.log;
+pid ../nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    # Basic settings
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+    
+    # Logging
+    access_log ../logs/nginx_access.log;
+    
+    # Basic performance
+    sendfile on;
+    keepalive_timeout 65;
+    
+    # Upstream to Gunicorn server
+    upstream medical_app {
+        server 127.0.0.1:9090;
+    }
+    
+    # Main server block
+    server {
+        listen 80;  # Nginx will run on port 80 (standard HTTP port)
+        server_name localhost;
+        
+        # Proxy all requests to Gunicorn
+        location / {
+            proxy_pass http://medical_app;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            
+            # Timeouts
+            proxy_connect_timeout 30s;
+            proxy_send_timeout 30s;
+            proxy_read_timeout 30s;
+        }
+        
+        # Serve static files directly (optional)
+        location /static/ {
+            alias ../web_app/static/;
+            expires 1d;
+            add_header Cache-Control "public, immutable";
+        }
+        
+        # Health check
+        location /nginx-health {
+            access_log off;
+            return 200 "healthy\n";
+            add_header Content-Type text/plain;
+        }
+    }
+}
