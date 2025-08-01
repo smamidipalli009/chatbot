@@ -9,7 +9,7 @@ sleep 2
 
 # Start gunicorn and save PID
 echo "Starting Gunicorn..."
-../deploy_env/bin/gunicorn --config config/gunicorn_config.py app:app &
+nohup ../deploy_env/bin/gunicorn --config config/gunicorn_config.py app:app &
 GUNICORN_PID=$!
 
 # Save PID to file
