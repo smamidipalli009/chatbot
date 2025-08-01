@@ -92,6 +92,30 @@ jobs:
           cp run_chatbot.py dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
 
+    - name: Read Hostname from File
+      id: read-hostname
+      run: |
+          EC2_HOST=$(cat /tmp/ec2_host.txt)
+          echo "EC2_HOST=$EC2_HOST" >> $GITHUB_ENV
+          echo "Read EC2_HOST from /tmp/ec2_host.txt: $EC2_HOST"
+
+    - name: Upload App to EC2
+      run: |
+        scp -i ~/.ssh/mlchatbot_app_key.pem -o StrictHostKeyChecking=no dist/mlchatbot-app.zip "$EC2_USER@${{ env.EC2_HOST }}:~/"
+
+
+    - name: Deploy App on EC2
+      run: |
+          ssh -i ~/.ssh/mlchatbot_app_key.pem -o StrictHostKeyChecking=no \
+            "$EC2_USER@${{ env.EC2_HOST }}" << 'EOF'
+              rm -rf mlchatbot-app
+              unzip -o mlchatbot-app.zip
+              cd mlchatbot-app
+              sudo chmod 755 web_app/*.sh
+              sudo chmod 755 set.sh
+              sudo chmod 755 nginx_setup.sh
+          EOF
+
     - name: Permissions update
       run: |
         cd dist/mlchatbot-app
