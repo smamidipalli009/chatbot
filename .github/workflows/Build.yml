@@ -10,6 +10,10 @@ jobs:
     name: Run Pipeline & Clean Up
     runs-on: self-hosted
 
+    defaults:
+      run:
+        working-directory: Chatbot
+
     steps:
     - name: Clean Workspace
       run: |
@@ -22,10 +26,13 @@ jobs:
 
     - name: Install Required Packages
       run: |
-        pip install -r medical_chatbot/requirements.txt --break-system-packages
+        python -m venv build_env
+        source venv_py313/bin/activate
+
+    - name: Install Required Packages
+      run: |
+        pip install -r requirements_build.txt --break-system-packages
 
     - name: Run ML Pipeline
       run: |
-        ls -lthra
-        cd medical_chatbot
-        python3 main/run_pipeline.py
+        python3 src/run_pipelines.py
