@@ -20,7 +20,8 @@ pip3 install -r requirements_deploy.txt  --break-system-packages
 
 #deactivate
 # Make scripts executable
-chmod +x deploy/start.sh deploy/stop.sh
+chmod +x web_app/start.sh web_app/stop.sh
 
 # Start the application
-bash deploy/start.sh
+cd web_app
+bash start.sh
