@@ -87,11 +87,17 @@ jobs:
           cp -rf deploy dist/mlchatbot-app/
           cp set.sh dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
-      
+
+    - name: paths
+      run: |
+        pwd
+        pwd
+        ls -lthra 
 
     - name: Validate zip contents
       run: |
         ls -lthra 
         pwd
         cd dist/mlchatbot-app
+        sudo chmod 755 set.sh
         bash set.sh
