@@ -91,6 +91,6 @@ jobs:
 
     - name: Validate zip contents
       run: |
-        ls -lthra mlchatbot-app.zip
-        ls -lthra mlchatbot-app
+        ls -lthra 
+        pwd
         bash set.sh
