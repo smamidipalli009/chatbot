@@ -1,5 +1,4 @@
-# Very basic Nginx configuration for lab environment
-# Place this in deploy/ folder
+# Nginx configuration
 
 worker_processes 1;
 error_log ../logs/nginx_error.log;
