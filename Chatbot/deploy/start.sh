@@ -27,8 +27,8 @@ echo "Starting Nginx (web server)..."
 sudo nginx -c $(pwd)/nginx.conf
 
 echo ""
-echo "🚀 App started successfully!"
-echo "📱 Access at: http://localhost"
-echo "💾 Logs in: ../logs/"
+echo "App started successfully!"
+echo "Access at: http://localhost"
+echo "Logs in: ../logs/"
 echo ""
 echo "To stop: ./stop.sh"
