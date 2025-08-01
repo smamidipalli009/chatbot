@@ -13,10 +13,10 @@ python3 -m venv deploy_env
 source deploy_env/Scripts/activate
 
 # Upgrade pip tools
-pip3 install --upgrade pip setuptools wheel
+pip3 install --upgrade pip setuptools wheel  --break-system-packages
 
 # Install requirements (fixed filename)
-pip3 install -r deploy/requirements_deploy.txt
+pip3 install -r deploy/requirements_deploy.txt  --break-system-packages
 
 deactivate
 # Make scripts executable
