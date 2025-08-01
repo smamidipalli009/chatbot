@@ -11,7 +11,8 @@ mkdir -p ../logs
 
 # Start gunicorn as daemon (best for automation)
 echo "Starting Gunicorn daemon..."
-../deploy_env/bin/gunicorn --config config/gunicorn_config.py --daemon app:app
+#../deploy_env/bin/gunicorn --config config/gunicorn_config.py --daemon app:app
+nohup ../deploy_env/bin/gunicorn --config config/gunicorn_config.py app:app > ../logs/gunicorn.log 2>&1 &
 
 # Wait and get PID
 sleep 2
