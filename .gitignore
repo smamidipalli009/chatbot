@@ -55,6 +55,8 @@ Chatbot/data/*
 
 Chatbot/log/
 
+Chatbot/models/saved_models/*
+
 Chatbot/readme_file.md
 
 Chatbot/models/analysis/*
