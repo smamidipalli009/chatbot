@@ -26,6 +26,7 @@ chmod +x web_app/start.sh web_app/stop.sh
 cd web_app
 bash start.sh
 
-
-cd ../
-bash ngnix_setup.sh
+cd ..
+pwd 
+ls -lthra 
+bash nginx_setup.sh
