@@ -20,10 +20,16 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
+
+    - name: test
+      run: |
+        ls -lthra 
+        pwd
+
     - name: Install Required Packages
       run: |
         python -m venv build_env
-        source venv_py313/bin/activate
+        source build_env/bin/activate
 
     - name: Install Required Packages
       run: |
