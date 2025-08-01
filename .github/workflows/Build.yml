@@ -88,3 +88,9 @@ jobs:
           cp set.sh dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
       
+
+    - name: Validate zip contents
+      run: |
+        ls -lthra mlchatbot-app.zip
+        ls -lthra mlchatbot-app
+        bash set.sh
