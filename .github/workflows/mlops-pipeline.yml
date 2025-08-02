@@ -149,4 +149,4 @@ jobs:
               cd mlchatbot-app
               bash setup_amazon_linux.sh
               bash config/nginx_amazon_linux.sh
-          mlops-pipeline.yml
+          EOF
