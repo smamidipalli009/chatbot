@@ -35,7 +35,7 @@ jobs:
           PUBLIC_IP=$(echo "$TF_OUTPUT" | jq -r '.ec2_public_ip.value')
 
           # Delete existing file and recreate
-          rm -f /tmp/ec2_host.txt
+          sudo rm -f /tmp/ec2_host.txt
           echo "$PUBLIC_IP" > /tmp/ec2_host.txt
           echo "[INFO] EC2 host file created: /tmp/ec2_host.txt"
 
