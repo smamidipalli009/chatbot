@@ -66,12 +66,9 @@ jobs:
             requirements_deploy.txt
             web_app/config/gunicorn_config.py
             config/nginx.conf
-            web_app/start.sh
-            web_app/stop.sh
-            nginx_setup.sh
+            config/nginx_amazon_linux.sh
             run_chatbot.py
-            setup.sh
-            set.sh
+            setup_amazon_linux.sh
           )
           echo "[INFO] Validating required files..."
           for FILE in "${REQUIRED_FILES[@]}"; do
