@@ -14,7 +14,7 @@ sudo yum update -y
 sudo dnf install python3.13 python3.13-pip python3.13-pip-wheel nginx -y
 
 # Create virtual environment
-python3 -m venv deploy_env
+python3.13 -m venv deploy_env
 source deploy_env/bin/activate
 
 # Upgrade pip tools
