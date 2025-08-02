@@ -150,5 +150,6 @@ jobs:
             "$EC2_USER@${{ env.EC2_HOST }}" << 'EOF'
               cd mlchatbot-app
               bash setup_amazon_linux.sh
-              bash config/nginx_amazon_linux.sh
+              cd config
+              bash nginx_amazon_linux.sh
           EOF
