@@ -1,5 +1,4 @@
 #!/bin/bash
-# Simple nginx setup script - replaces nginx.conf with our custom one
 
 echo "Setting up nginx with custom configuration..."
 
@@ -7,7 +6,7 @@ echo "Setting up nginx with custom configuration..."
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
 
 # Copy our custom nginx.conf
-sudo cp config/nginx.conf /etc/nginx/nginx.conf
+sudo cp nginx.conf /etc/nginx/nginx.conf
 
 # Test configuration
 sudo nginx -t
