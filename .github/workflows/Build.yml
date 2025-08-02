@@ -8,6 +8,9 @@ jobs:
     name: Execute Model Training and Validation
     runs-on: self-hosted
 
+    env:
+      EC2_USER: ec2-user
+      
     defaults:
       run:
         working-directory: Chatbot
