@@ -88,9 +88,7 @@ jobs:
           cp models/saved_models/disease_classification_model.pkl dist/mlchatbot-app/models/saved_models/
           cp requirements_deploy.txt dist/mlchatbot-app/
           cp -rf config dist/mlchatbot-app/
-          cp set.sh dist/mlchatbot-app/
-          cp setup.sh dist/mlchatbot-app/
-          cp nginx_setup.sh dist/mlchatbot-app/
+          cp setup_amazon_linux.sh dist/mlchatbot-app/
           cp run_chatbot.py dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
 
@@ -113,10 +111,8 @@ jobs:
               rm -rf mlchatbot-app
               unzip -o mlchatbot-app.zip
               cd mlchatbot-app
-              sudo chmod 755 web_app/*.sh
-              sudo chmod 755 set.sh
-              sudo chmod 755 nginx_setup.sh
-              sudo chmod 755 setup.sh
+              sudo chmod 755 setup_amazon_linux.sh
+              sudo chmod 755 config/nginx_amazon_linux.sh
           EOF
 
 
@@ -125,6 +121,6 @@ jobs:
           ssh -i ~/.ssh/mlchatbot_app_key.pem -o StrictHostKeyChecking=no \
             "$EC2_USER@${{ env.EC2_HOST }}" << 'EOF'
               cd mlchatbot-app
-              bash setup.sh
-              bash nginx_setup.sh
+              bash setup_amazon_linux.sh
+              bash config/nginx_amazon_linux.sh
           EOF
