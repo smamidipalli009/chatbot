@@ -115,20 +115,3 @@ jobs:
               sudo chmod 755 set.sh
               sudo chmod 755 nginx_setup.sh
           EOF
-
-    - name: Permissions update
-      run: |
-        cd dist/mlchatbot-app
-        sudo chmod 755 web_app/*.sh
-        sudo chmod 755 set.sh
-        sudo chmod 755 nginx_setup.sh
-
-    - name: Install dependencies
-      run: |
-        cd dist/mlchatbot-app
-        bash set.sh
-
-    - name: start nginx
-      run: |
-        cd dist/mlchatbot-app
-        bash nginx_setup.sh
