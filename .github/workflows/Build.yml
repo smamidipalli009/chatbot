@@ -70,6 +70,7 @@ jobs:
             web_app/stop.sh
             nginx_setup.sh
             run_chatbot.py
+            setup.sh
             set.sh
           )
           echo "[INFO] Validating required files..."
@@ -91,6 +92,7 @@ jobs:
           cp requirements_deploy.txt dist/mlchatbot-app/
           cp -rf config dist/mlchatbot-app/
           cp set.sh dist/mlchatbot-app/
+          cp setup.sh dist/mlchatbot-app/
           cp nginx_setup.sh dist/mlchatbot-app/
           cp run_chatbot.py dist/mlchatbot-app/
           cd dist && zip -r mlchatbot-app.zip mlchatbot-app
@@ -116,5 +118,16 @@ jobs:
               cd mlchatbot-app
               sudo chmod 755 web_app/*.sh
               sudo chmod 755 set.sh
+              sudo chmod 755 nginx_setup.sh
+              sudo chmod 755 setup.sh
+          EOF
+
+
+    - name: Deploy
+      run: |
+          ssh -i ~/.ssh/mlchatbot_app_key.pem -o StrictHostKeyChecking=no \
+            "$EC2_USER@${{ env.EC2_HOST }}" << 'EOF'
+              cd mlchatbot-app
+              sudo chmod 755 setup.sh
               sudo chmod 755 nginx_setup.sh
           EOF
