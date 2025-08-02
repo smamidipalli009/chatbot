@@ -34,8 +34,10 @@ jobs:
           # Corrected keys based on outputs.tf
           PUBLIC_IP=$(echo "$TF_OUTPUT" | jq -r '.ec2_public_ip.value')
 
-          # Export public IP to file
+          # Delete existing file and recreate
+          rm -f /tmp/ec2_host.txt
           echo "$PUBLIC_IP" > /tmp/ec2_host.txt
+          echo "[INFO] EC2 host file created: /tmp/ec2_host.txt"
 
           set -x # Re-enable echoing of commands
 
@@ -58,8 +60,8 @@ jobs:
 
           set -x # Re-enable echoing of commands
 
-  ec2-deployment:
-    name: EC2-App-Deploy
+  ML-Build-EC2-Deploy:
+    name: ml-build-deploy
     runs-on: self-hosted
     needs: infra-provisioning
 
