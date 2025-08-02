@@ -10,7 +10,8 @@ echo "Installing and starting Medical App..."
 #sudo apt-get install -y nginx
 
 sudo yum update -y
-dnf install python3.13
+#sudo dnf install python3.13 nginx -y
+sudo dnf install python3.13 python3.13-pip python3.13-pip-wheel nginx -y
 
 # Create virtual environment
 python3 -m venv deploy_env
