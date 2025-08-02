@@ -128,6 +128,6 @@ jobs:
           ssh -i ~/.ssh/mlchatbot_app_key.pem -o StrictHostKeyChecking=no \
             "$EC2_USER@${{ env.EC2_HOST }}" << 'EOF'
               cd mlchatbot-app
-              sudo chmod 755 setup.sh
-              sudo chmod 755 nginx_setup.sh
+              bash setup.sh
+              bash nginx_setup.sh
           EOF
